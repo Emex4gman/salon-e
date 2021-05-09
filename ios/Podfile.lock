@@ -1,0 +1,135 @@
+PODS:
+  - Amplify (1.9.1):
+    - Amplify/Default (= 1.9.1)
+  - Amplify/Default (1.9.1)
+  - amplify_analytics_pinpoint (0.0.1):
+    - Amplify
+    - amplify_core
+    - AmplifyPlugins/AWSPinpointAnalyticsPlugin
+    - Flutter
+  - amplify_auth_cognito (0.0.1):
+    - Amplify
+    - amplify_core
+    - AmplifyPlugins/AWSCognitoAuthPlugin
+    - Flutter
+    - ObjectMapper
+  - amplify_core (0.0.1):
+    - Flutter
+  - amplify_flutter (0.0.1):
+    - Amplify
+    - amplify_core
+    - AmplifyPlugins/AWSCognitoAuthPlugin
+    - AWSPluginsCore
+    - Flutter
+  - amplify_storage_s3 (0.0.1):
+    - Amplify
+    - amplify_core
+    - AmplifyPlugins/AWSS3StoragePlugin
+    - Flutter
+  - AmplifyPlugins/AWSCognitoAuthPlugin (1.9.1):
+    - AWSAuthCore (~> 2.24.0)
+    - AWSCognitoIdentityProvider (~> 2.24.0)
+    - AWSCognitoIdentityProviderASF (~> 2.24.0)
+    - AWSCore (~> 2.24.0)
+    - AWSMobileClient (~> 2.24.0)
+    - AWSPluginsCore (= 1.9.1)
+  - AmplifyPlugins/AWSPinpointAnalyticsPlugin (1.9.1):
+    - AWSCore (~> 2.24.0)
+    - AWSPinpoint (~> 2.24.0)
+    - AWSPluginsCore (= 1.9.1)
+  - AmplifyPlugins/AWSS3StoragePlugin (1.9.1):
+    - AWSCore (~> 2.24.0)
+    - AWSPluginsCore (= 1.9.1)
+    - AWSS3 (~> 2.24.0)
+  - AWSAuthCore (2.24.0):
+    - AWSCore (= 2.24.0)
+  - AWSCognitoIdentityProvider (2.24.0):
+    - AWSCognitoIdentityProviderASF (= 2.24.0)
+    - AWSCore (= 2.24.0)
+  - AWSCognitoIdentityProviderASF (2.24.0)
+  - AWSCore (2.24.0)
+  - AWSMobileClient (2.24.0):
+    - AWSAuthCore (= 2.24.0)
+    - AWSCognitoIdentityProvider (= 2.24.0)
+    - AWSCognitoIdentityProviderASF (= 2.24.0)
+    - AWSCore (= 2.24.0)
+  - AWSPinpoint (2.24.0):
+    - AWSCore (= 2.24.0)
+  - AWSPluginsCore (1.9.1):
+    - Amplify (= 1.9.1)
+    - AWSCore (~> 2.24.0)
+  - AWSS3 (2.24.0):
+    - AWSCore (= 2.24.0)
+  - Flutter (1.0.0)
+  - image_picker (0.0.1):
+    - Flutter
+  - ObjectMapper (4.2.0)
+  - webview_flutter (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - amplify_analytics_pinpoint (from `.symlinks/plugins/amplify_analytics_pinpoint/ios`)
+  - amplify_auth_cognito (from `.symlinks/plugins/amplify_auth_cognito/ios`)
+  - amplify_core (from `.symlinks/plugins/amplify_core/ios`)
+  - amplify_flutter (from `.symlinks/plugins/amplify_flutter/ios`)
+  - amplify_storage_s3 (from `.symlinks/plugins/amplify_storage_s3/ios`)
+  - Flutter (from `Flutter`)
+  - image_picker (from `.symlinks/plugins/image_picker/ios`)
+  - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Amplify
+    - AmplifyPlugins
+    - AWSAuthCore
+    - AWSCognitoIdentityProvider
+    - AWSCognitoIdentityProviderASF
+    - AWSCore
+    - AWSMobileClient
+    - AWSPinpoint
+    - AWSPluginsCore
+    - AWSS3
+    - ObjectMapper
+
+EXTERNAL SOURCES:
+  amplify_analytics_pinpoint:
+    :path: ".symlinks/plugins/amplify_analytics_pinpoint/ios"
+  amplify_auth_cognito:
+    :path: ".symlinks/plugins/amplify_auth_cognito/ios"
+  amplify_core:
+    :path: ".symlinks/plugins/amplify_core/ios"
+  amplify_flutter:
+    :path: ".symlinks/plugins/amplify_flutter/ios"
+  amplify_storage_s3:
+    :path: ".symlinks/plugins/amplify_storage_s3/ios"
+  Flutter:
+    :path: Flutter
+  image_picker:
+    :path: ".symlinks/plugins/image_picker/ios"
+  webview_flutter:
+    :path: ".symlinks/plugins/webview_flutter/ios"
+
+SPEC CHECKSUMS:
+  Amplify: 424fb27b96360ef59647c91ab7cc1acd64b107a9
+  amplify_analytics_pinpoint: df3010eb49161ada82712a6b74d3f77296ac561e
+  amplify_auth_cognito: 2e090a788d0ba4e08f6438170b1e7aac872782b4
+  amplify_core: 8b38d20089fe4f225c14db6892f586bd03824a42
+  amplify_flutter: d64b45e3a016e491bbb2e110fee57e150daf2164
+  amplify_storage_s3: 784469070ec70527454e540ef0d501498f58927a
+  AmplifyPlugins: 35c951f0e97aaa8ba11e2b0ed9610d62ed60a2e0
+  AWSAuthCore: f5325c5e076e8da6ad66932029ddb04451aa28cd
+  AWSCognitoIdentityProvider: 874160e2f79fc957efd28745ee7389bccd59dfaf
+  AWSCognitoIdentityProviderASF: a604ce4b892fe7be0729d22a77a36f8b641e35a4
+  AWSCore: d5cd1311b33a4ae9faacda839c0ac9fff711cd79
+  AWSMobileClient: 0cd4603f1dff10edb1e7b32e07753c864a21c5ed
+  AWSPinpoint: d8a830824b7539582c3d98316d9982e0f7deafe3
+  AWSPluginsCore: ffd554c493e6e46a45c2e71e4fbc33fbb3e00b7d
+  AWSS3: d2e6ec331c46d1e00e4d25d061f2f9e85de22977
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  image_picker: 50e7c7ff960e5f58faa4d1f4af84a771c671bc4a
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  webview_flutter: 9f491a9b5a66f2573946a389b2677987b0ff8c0b
+
+PODFILE CHECKSUM: f8b1624092be6e2e05274158991bbb1ce1b81f91
+
+COCOAPODS: 1.10.1

@@ -97,13 +97,14 @@ class AwsService {
   }
 
   Future<void> configureAmplify() async {
-    log(_amplifyconfig);
+    print('_amplifyconfig_amplifyconfig_amplifyconfig');
+    print(_amplifyconfig);
     Amplify.addPlugin(AmplifyAuthCognito());
     Amplify.addPlugin(AmplifyStorageS3());
     Amplify.addPlugin(AmplifyAnalyticsPinpoint());
 
     try {
-      if (!Amplify.isConfigured) await Amplify.configure(_amplifyconfig);
+      // if (!Amplify.isConfigured) await Amplify.configure(_amplifyconfig);
       print(Amplify.isConfigured);
     } on AmplifyAlreadyConfiguredException {
       print("Amplify was already configured. Was the app restarted?");
