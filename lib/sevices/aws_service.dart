@@ -12,7 +12,7 @@ import 'package:salon_e/models/user.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:image_picker/image_picker.dart';
-import '../amplifyconfiguration.dart';
+// import '../amplifyconfiguration.dart';
 
 class AwsService {
   factory AwsService() => _instance;
