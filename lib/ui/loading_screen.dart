@@ -16,8 +16,10 @@ class LoadingScreen extends StatefulWidget {
 class _LoadingScreenState extends State<LoadingScreen> {
   AwsService _awsService = AwsService();
   AuthState _authState = AuthState();
-
   _initApp() async {
+    var va = String.fromEnvironment("FIRST_VAR");
+    print("vavavavavavavavavavavavavavava");
+    print(va);
     await _awsService.configureAmplify();
     await _authState.setUser();
 
