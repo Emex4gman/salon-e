@@ -4,7 +4,9 @@ import 'package:salon_e/util/style/theme.dart';
 import 'sevices/navigation_service.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(MyApp());
 }
 

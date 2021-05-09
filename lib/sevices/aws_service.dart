@@ -7,25 +7,24 @@ import 'package:amplify_analytics_pinpoint/amplify_analytics_pinpoint.dart';
 import 'package:amplify_flutter/amplify.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:flutter/material.dart';
 import 'package:salon_e/models/responce_model.dart';
 import 'package:salon_e/models/user.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:image_picker/image_picker.dart';
-// import '../amplifyconfiguration.dart';
+import '../amplifyconfiguration.dart' as fig;
 
 class AwsService {
   factory AwsService() => _instance;
   static final AwsService _instance = AwsService._internal();
   AwsService._internal();
-  String _amplifyconfig = String.fromEnvironment("AMPLIFY_CONFIG");
-
+  static const AMPLIFY_CONFIG = String.fromEnvironment('AMPLIFY_CONFIG', defaultValue: fig.amplifyconfig);
   Future<ApiResponse> login(email, password) async {
     try {
       final res = await Amplify.Auth.signIn(username: email, password: password);
       return ApiResponse(success: res.isSignedIn);
     } on AuthException catch (e) {
-      print(e.message);
       return ApiResponse(errors: e, message: e.message);
     } catch (e) {
       return ApiResponse(errors: e as Exception, message: e.toString());
@@ -33,24 +32,17 @@ class AwsService {
   }
 
   Future<ApiResponse> signUp(email, password) async {
-    // String.fromEnvironment(name);
     try {
-      Map<String, String> userAttributes = {
-        'email': email,
-        // 'phone_number': '+14164518953',
-        // additional attributes as needed
-      };
-      SignUpResult res = await Amplify.Auth.signUp(
+      Map<String, String> userAttributes = {'email': email};
+      await Amplify.Auth.signUp(
         username: email,
         password: password,
         options: CognitoSignUpOptions(
           userAttributes: userAttributes,
         ),
       );
-      print(res.nextStep);
       return ApiResponse(success: true);
     } on AuthException catch (e) {
-      print(e.message);
       return ApiResponse(errors: e, message: e.message);
     } catch (e) {
       return ApiResponse(errors: e as Exception, message: e.toString());
@@ -65,7 +57,6 @@ class AwsService {
       await Amplify.Auth.signIn(username: user.email, password: user.password);
       return ApiResponse(success: res.isSignUpComplete);
     } on AuthException catch (e) {
-      print(e.message);
       return ApiResponse(errors: e, message: e.message);
     } catch (e) {
       return ApiResponse(errors: e as Exception, message: e.toString());
@@ -74,13 +65,11 @@ class AwsService {
 
   Future<ApiResponse> resendOtp(UserData user) async {
     try {
-      print(user.email);
       await Amplify.Auth.resendSignUpCode(username: user.email);
 
       await Amplify.Auth.signIn(username: user.email, password: user.password);
       return ApiResponse(success: true, message: "New Otp sent to email");
     } on AuthException catch (e) {
-      print(e.message);
       return ApiResponse(errors: e, message: e.message);
     } catch (e) {
       return ApiResponse(errors: e as Exception, message: e.toString());
@@ -97,17 +86,14 @@ class AwsService {
   }
 
   Future<void> configureAmplify() async {
-    print('_amplifyconfig_amplifyconfig_amplifyconfig');
-    print(_amplifyconfig);
     Amplify.addPlugin(AmplifyAuthCognito());
     Amplify.addPlugin(AmplifyStorageS3());
     Amplify.addPlugin(AmplifyAnalyticsPinpoint());
 
     try {
-      // if (!Amplify.isConfigured) await Amplify.configure(_amplifyconfig);
-      print(Amplify.isConfigured);
+      if (!Amplify.isConfigured) await Amplify.configure(AMPLIFY_CONFIG);
     } on AmplifyAlreadyConfiguredException {
-      print("Amplify was already configured. Was the app restarted?");
+      debugPrint("Amplify was already configured. Was the app restarted?");
     }
   }
 
