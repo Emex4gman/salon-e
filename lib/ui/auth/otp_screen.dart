@@ -41,63 +41,83 @@ class _OtpScreenState extends SalonSatefulWidgetState<OtpScreen> {
     setState(() {});
   }
 
+  void _resendOtp() async {
+    isLoading = true;
+    setState(() {});
+    final res = await _awsService.resendOtp(widget.user);
+    if (res.success) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("${res.message}"),
+          backgroundColor: Colors.blueAccent[700],
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("${res.message}"),
+          backgroundColor: Colors.redAccent[700],
+        ),
+      );
+    }
+    isLoading = false;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () => Future.value(false),
-      child: Scaffold(
-        appBar: salonAppBar(),
-        body: SingleChildScrollView(
-          child: Container(
-            height: height,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Form(
-              key: _formKey,
-              child: isLoading
-                  ? Center(child: CircularProgressIndicator())
-                  : Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Card(
-                          elevation: 12,
-                          margin: EdgeInsets.all(20),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: Column(
-                              children: [
-                                SizedBox(height: 10),
-                                Image.asset("assets/images/app_logo.png"),
-                                SizedBox(height: 25),
-                                CustomInputField(
-                                  label: "Enter OTP",
-                                  field: 'number',
-                                  validator: Validator.validateOtp,
-                                  textController: _otpCtr,
-                                ),
-                                SizedBox(height: 20),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    if (_formKey.currentState!.validate() == true) {
-                                      _verifyCode();
-                                    }
-                                  },
-                                  child: Text("Confirm"),
-                                ),
-                                TextButton(
-                                    onPressed: () {},
-                                    child: Text(
-                                      "Resend Code",
-                                      style: TextStyle(color: Colors.grey),
-                                    ))
-                              ],
-                            ),
+    return Scaffold(
+      appBar: salonAppBar(),
+      body: SingleChildScrollView(
+        child: Container(
+          height: height,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Form(
+            key: _formKey,
+            child: isLoading
+                ? Center(child: CircularProgressIndicator())
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Card(
+                        elevation: 12,
+                        margin: EdgeInsets.all(20),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Column(
+                            children: [
+                              SizedBox(height: 10),
+                              Image.asset("assets/images/app_logo.png"),
+                              SizedBox(height: 25),
+                              CustomInputField(
+                                label: "Enter OTP",
+                                field: 'number',
+                                validator: Validator.validateOtp,
+                                textController: _otpCtr,
+                              ),
+                              SizedBox(height: 20),
+                              ElevatedButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate() == true) {
+                                    _verifyCode();
+                                  }
+                                },
+                                child: Text("Confirm"),
+                              ),
+                              TextButton(
+                                  onPressed: _resendOtp,
+                                  child: Text(
+                                    "Resend Code",
+                                    style: TextStyle(color: Colors.grey),
+                                  ))
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-            ),
+                      ),
+                    ],
+                  ),
           ),
         ),
       ),
