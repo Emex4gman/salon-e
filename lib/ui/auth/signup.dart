@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:salon_e/componets/app_bar.dart';
 import 'package:salon_e/componets/custom_input.dart';
 import 'package:salon_e/componets/salon_stateful_widget.dart';
 import 'package:salon_e/models/user.dart';
 import 'package:salon_e/sevices/aws_service.dart';
 import 'package:salon_e/sevices/navigation_service.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../../validator.dart';
 import 'otp_screen.dart';
 
@@ -17,8 +17,8 @@ class SignUp extends SalonSatefulWidget {
 
 class _LoginState extends SalonSatefulWidgetState<SignUp> {
   final _formKey = GlobalKey<FormState>();
-  final _emailCtr = TextEditingController(text: "emex4gman@gmail.com");
-  final _passwordCtr = TextEditingController(text: "1234567890");
+  final _emailCtr = TextEditingController();
+  final _passwordCtr = TextEditingController();
   final _awsService = AwsService();
 
   void _signUp() async {
@@ -47,6 +47,7 @@ class _LoginState extends SalonSatefulWidgetState<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: salonAppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -60,7 +61,7 @@ class _LoginState extends SalonSatefulWidgetState<SignUp> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SvgPicture.asset("assets/svgs/app_logo.svg"),
+                        Image.asset("assets/images/app_logo.png"),
                         SizedBox(height: 25),
                         CustomInputField(
                           label: "Email",

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:salon_e/componets/app_bar.dart';
 import 'package:salon_e/componets/custom_input.dart';
 import 'package:salon_e/componets/salon_stateful_widget.dart';
 import 'package:salon_e/models/user.dart';
 import 'package:salon_e/sevices/aws_service.dart';
 import 'package:salon_e/sevices/navigation_service.dart';
 import 'package:salon_e/ui/profile/profile.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../../validator.dart';
 
 class OtpScreen extends SalonSatefulWidget {
@@ -46,6 +46,7 @@ class _OtpScreenState extends SalonSatefulWidgetState<OtpScreen> {
     return WillPopScope(
       onWillPop: () => Future.value(false),
       child: Scaffold(
+        appBar: salonAppBar(),
         body: SingleChildScrollView(
           child: Container(
             height: height,
@@ -67,7 +68,7 @@ class _OtpScreenState extends SalonSatefulWidgetState<OtpScreen> {
                             child: Column(
                               children: [
                                 SizedBox(height: 10),
-                                SvgPicture.asset("assets/svgs/app_logo.svg"),
+                                Image.asset("assets/images/app_logo.png"),
                                 SizedBox(height: 25),
                                 CustomInputField(
                                   label: "Enter OTP",

@@ -6,7 +6,6 @@ import 'package:salon_e/sevices/dimension.dart';
 import 'package:salon_e/sevices/navigation_service.dart';
 import 'package:salon_e/ui/auth/login.dart';
 import 'package:salon_e/ui/profile/profile.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -58,7 +57,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset("assets/svgs/app_logo.svg"),
+              Image.asset("assets/images/app_logo.png"),
             ],
           ),
         ),
