@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:salon_e/componets/solan_stateful_widget.dart';
+import 'package:salon_e/componets/salon_stateful_widget.dart';
 import 'package:salon_e/providers/auth_state.dart';
 import 'package:salon_e/sevices/aws_service.dart';
 import 'package:salon_e/sevices/navigation_service.dart';

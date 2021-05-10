@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salon_e/componets/custom_input.dart';
-import 'package:salon_e/componets/solan_stateful_widget.dart';
+import 'package:salon_e/componets/salon_stateful_widget.dart';
 import 'package:salon_e/providers/auth_state.dart';
 import 'package:salon_e/sevices/aws_service.dart';
 import 'package:salon_e/sevices/navigation_service.dart';
