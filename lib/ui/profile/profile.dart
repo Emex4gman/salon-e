@@ -7,6 +7,7 @@ import 'package:salon_e/sevices/aws_service.dart';
 import 'package:salon_e/sevices/navigation_service.dart';
 import 'package:salon_e/ui/web_view/sample_profile.dart';
 import 'package:salon_e/util/style/typography.dart';
+import 'package:salon_e/util/translation/app_translate.dart';
 
 class ProfileScreen extends SalonSatefulWidget {
   ProfileScreen({Key? key}) : super(key: key);
@@ -63,7 +64,7 @@ class _ProfileScreenState extends SalonSatefulWidgetState<ProfileScreen> {
     return await showDialog<bool>(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text('Confirm Exit?', style: TextStyle(color: Colors.black, fontSize: 18.0, fontWeight: FontWeight.bold)),
+            title: Text(tr('Confirm Exit?'), style: TextStyle(color: Colors.black, fontSize: 18.0, fontWeight: FontWeight.bold)),
             content: SalonText.button(
               'Are you sure you want to exit Salon E ? Tap \'Yes\' to exit \'No\' to cancel.',
             ),
@@ -95,7 +96,7 @@ class _ProfileScreenState extends SalonSatefulWidgetState<ProfileScreen> {
           automaticallyImplyLeading: false,
           systemOverlayStyle: SystemUiOverlayStyle.light,
           backgroundColor: Colors.redAccent[700],
-          title: Text("Profile"),
+          title: Text(tr("tab_profile")),
           backwardsCompatibility: false,
           leading: null,
           actions: [
@@ -116,26 +117,48 @@ class _ProfileScreenState extends SalonSatefulWidgetState<ProfileScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(height: 15),
-                InkWell(
-                  onTap: _changeProfilePicture,
-                  child: CircleAvatar(
-                    maxRadius: 100,
-                    backgroundImage: _imageUrl == null ? null : NetworkImage(_imageUrl!),
-                    child: isLoading
-                        ? Center(
-                            child: CircularProgressIndicator(
-                            backgroundColor: Colors.white,
-                          ))
-                        : null,
+                CircleAvatar(
+                  maxRadius: 100,
+                  backgroundImage: _imageUrl == null ? null : NetworkImage(_imageUrl!),
+                  child: isLoading
+                      ? Center(
+                          child: CircularProgressIndicator(
+                          backgroundColor: Colors.white,
+                        ))
+                      : null,
+                ),
+                TextButton(
+                  onPressed: _changeProfilePicture,
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.camera_alt,
+                        size: 35,
+                      ),
+                      Text(
+                        tr("upload message"),
+                      ),
+                    ],
                   ),
                 ),
-                Text("${user!.username ?? ""}"),
+                SizedBox(height: 20),
+                Text(
+                  "${tr('welcome')} 👋🏼",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 5),
+                Text(
+                  "${user!.username ?? ""}",
+                  style: TextStyle(fontSize: 16),
+                ),
+                SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () => NavigationService.navigateToWidget(SampleProfie()),
                   child: Text(
-                    "Sample Profile Web View",
+                    tr("Sample Profile Web View"),
                   ),
-                )
+                ),
+                buildLanguagesList()
               ],
             ),
           ),
