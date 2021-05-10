@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 // ignore: import_of_legacy_library_into_null_safe
@@ -13,13 +12,13 @@ import 'package:salon_e/models/user.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:image_picker/image_picker.dart';
-import '../amplifyconfiguration.dart' as fig;
+// import '../amplifyconfiguration.dart' as fig;
 
 class AwsService {
   factory AwsService() => _instance;
   static final AwsService _instance = AwsService._internal();
   AwsService._internal();
-  static const AMPLIFY_CONFIG = String.fromEnvironment('AMPLIFY_CONFIG', defaultValue: fig.amplifyconfig);
+  static const AMPLIFY_CONFIG = String.fromEnvironment('AMPLIFY_CONFIG', defaultValue: "Not Set");
   Future<AppResponse> login(email, password) async {
     try {
       final res = await Amplify.Auth.signIn(username: email, password: password);
