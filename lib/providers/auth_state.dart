@@ -16,7 +16,6 @@ class AuthState extends ChangeNotifier {
       _user = await Amplify.Auth.getCurrentUser();
     } catch (e) {
       _user = null;
-      print(e);
     }
     notifyListeners();
   }

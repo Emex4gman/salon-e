@@ -20,18 +20,18 @@ class AwsService {
   static final AwsService _instance = AwsService._internal();
   AwsService._internal();
   static const AMPLIFY_CONFIG = String.fromEnvironment('AMPLIFY_CONFIG', defaultValue: fig.amplifyconfig);
-  Future<ApiResponse> login(email, password) async {
+  Future<AppResponse> login(email, password) async {
     try {
       final res = await Amplify.Auth.signIn(username: email, password: password);
-      return ApiResponse(success: res.isSignedIn);
+      return AppResponse(success: res.isSignedIn);
     } on AuthException catch (e) {
-      return ApiResponse(errors: e, message: e.message);
+      return AppResponse(errors: e, message: e.message);
     } catch (e) {
-      return ApiResponse(errors: e as Exception, message: e.toString());
+      return AppResponse(errors: e as Exception, message: e.toString());
     }
   }
 
-  Future<ApiResponse> signUp(email, password) async {
+  Future<AppResponse> signUp(email, password) async {
     try {
       Map<String, String> userAttributes = {'email': email};
       await Amplify.Auth.signUp(
@@ -41,38 +41,37 @@ class AwsService {
           userAttributes: userAttributes,
         ),
       );
-      return ApiResponse(success: true);
+      return AppResponse(success: true);
     } on AuthException catch (e) {
-      return ApiResponse(errors: e, message: e.message);
+      return AppResponse(errors: e, message: e.message);
     } catch (e) {
-      return ApiResponse(errors: e as Exception, message: e.toString());
+      return AppResponse(errors: e as Exception, message: e.toString());
     }
   }
 
-  Future<ApiResponse> verifyCode(String otp, UserData user) async {
+  Future<AppResponse> verifyCode(String otp, UserData user) async {
     try {
-      print(user.email);
       SignUpResult res = await Amplify.Auth.confirmSignUp(username: user.email, confirmationCode: otp);
       // login UserData
       await Amplify.Auth.signIn(username: user.email, password: user.password);
-      return ApiResponse(success: res.isSignUpComplete);
+      return AppResponse(success: res.isSignUpComplete);
     } on AuthException catch (e) {
-      return ApiResponse(errors: e, message: e.message);
+      return AppResponse(errors: e, message: e.message);
     } catch (e) {
-      return ApiResponse(errors: e as Exception, message: e.toString());
+      return AppResponse(errors: e as Exception, message: e.toString());
     }
   }
 
-  Future<ApiResponse> resendOtp(UserData user) async {
+  Future<AppResponse> resendOtp(UserData user) async {
     try {
       await Amplify.Auth.resendSignUpCode(username: user.email);
 
       await Amplify.Auth.signIn(username: user.email, password: user.password);
-      return ApiResponse(success: true, message: "New Otp sent to email");
+      return AppResponse(success: true, message: "New Otp sent to email");
     } on AuthException catch (e) {
-      return ApiResponse(errors: e, message: e.message);
+      return AppResponse(errors: e, message: e.message);
     } catch (e) {
-      return ApiResponse(errors: e as Exception, message: e.toString());
+      return AppResponse(errors: e as Exception, message: e.toString());
     }
   }
 
@@ -97,12 +96,12 @@ class AwsService {
     }
   }
 
-  Future<ApiResponse> logout() async {
+  Future<AppResponse> logout() async {
     try {
       await Amplify.Auth.signOut();
-      return ApiResponse(success: true, message: "Signed Out");
+      return AppResponse(success: true, message: "Signed Out");
     } catch (e) {
-      return ApiResponse(errors: e as Exception, message: e.toString());
+      return AppResponse(errors: e as Exception, message: e.toString());
     }
   }
 
