@@ -113,8 +113,8 @@ class AwsService {
 
   Future<String?> getFileUrl(String key) async {
     try {
-      GetUrlResult result2 = await Amplify.Storage.getUrl(key: key);
-      return result2.url;
+      GetUrlResult storageS3 = await Amplify.Storage.getUrl(key: key);
+      return storageS3.url;
     } catch (e) {
       return null;
     }
